@@ -63,7 +63,7 @@ async function askQuestion(rl, q, number, total) {
 
     const { timedOut, answer } = await askWithTimeout(rl, prompt, remaining);
     if (timedOut) {
-      console.log('\n  ⏰ Time up!');
+      console.log('\n  Time up!');
       return null;
     }
 
@@ -71,7 +71,7 @@ async function askQuestion(rl, q, number, total) {
     if (Number.isInteger(num) && num >= 1 && num <= q.choices.length) {
       return num - 1;
     }
-    console.log(`  ⚠️  Please enter a number between 1 and ${q.choices.length}.`);
+    console.log(`  Please enter a number between 1 and ${q.choices.length}.`);
   }
 }
 
@@ -86,18 +86,18 @@ async function runQuiz(rl, questions) {
 
     if (chosen === null) {
       timedOut++;
-      console.log(`  ⏱️  No answer. Correct was: ${q.choices[q.answer]}`);
+      console.log(`  No answer. Correct was: ${q.choices[q.answer]}`);
     } else if (chosen === q.answer) {
       score++;
-      console.log('  ✅ Correct!');
+      console.log('  Correct!');
     } else {
-      console.log(`  ❌ Wrong. The answer is: ${q.choices[q.answer]}`);
+      console.log(`  Wrong. The answer is: ${q.choices[q.answer]}`);
     }
-    console.log(`  💡 ${q.explanation}`);
+    console.log(`  ${q.explanation}`);
   }
 
   console.log(`🏁 Final score: ${score}/${questions.length}`);
-  if (timedOut > 0) console.log(`⏰ Timed out on: ${timedOut} question(s)`);
+  if (timedOut > 0) console.log(`Timed out on: ${timedOut} question(s)`);
   return score;
 }
 
@@ -118,7 +118,7 @@ async function main() {
       const again = await ask(rl, '\nPlay again? (y/n): ');
       if (!/^y/i.test(again)) break;
     }
-    console.log('\nThanks for playing! 👋');
+    console.log('\nThanks for playing!');
   } finally {
     rl.close();
   }
